@@ -1,0 +1,226 @@
+
+Cantidad de observaciones con notas > 3:  51789
+Positivos/Total:  0.042
+Cantidad de observaciones para entrenamiento:  36252
+Positivos/Total:  0.042
+Variables:  ['cuat' 'MATERIA' 'pa1' 'extranjero' 'n_alum' 'p_ext' 'recurso'
+ 'p_recursa' 'pa1_prom' 'prom_edad' 'abandona1_p' 'SEDE_1' 'SEDE_10'
+ 'SEDE_13' 'SEDE_14' 'SEDE_15' 'SEDE_2' 'SEDE_21' 'SEDE_27' 'SEDE_28'
+ 'SEDE_30' 'SEDE_31' 'SEDE_32' 'SEDE_33' 'SEDE_34' 'SEDE_35' 'SEDE_39'
+ 'SEDE_4' 'SEDE_41' 'SEDE_42' 'SEDE_5' 'SEDE_6' 'turno_A' 'turno_B'
+ 'turno_C' 'turno_D' 'edad_1' 'edad_2' 'edad_3' 'edad_4' 'edad_5' 'edad_6'
+ 'edad_7' 'edad_8' 'edad_9' 'edad_10' 'facultad_99.0' 'facultad_999.0'
+ 'facultad_AGRONOMIA' 'facultad_ARQUITECTURA Y URBANISMO'
+ 'facultad_CIENCIAS ECONOMICAS' 'facultad_CIENCIAS SOCIALES'
+ 'facultad_CIENCIAS VETERINARIAS' 'facultad_CS EXACTAS Y NATURALES'
+ 'facultad_DERECHO' 'facultad_FARMACIA Y BIOQUIMICA'
+ 'facultad_FILOSOFIA Y LETRAS' 'facultad_INGENIERIA' 'facultad_MEDICINA'
+ 'facultad_ODONTOLOGIA' 'facultad_PSICOLOGIA']
+
+===================
+Validación cruzada con aucpr
+
+0  rounds= 1  aucpr= 0.0416  std= 0.0007
+1  rounds= 1  aucpr= 0.0416  std= 0.0007
+2  rounds= 1  aucpr= 0.0416  std= 0.0007
+3  rounds= 1  aucpr= 0.0416  std= 0.0007
+4  rounds= 1  aucpr= 0.0416  std= 0.0007
+5  rounds= 1  aucpr= 0.0416  std= 0.0007
+6  rounds= 1  aucpr= 0.0416  std= 0.0007
+7  rounds= 1  aucpr= 0.0416  std= 0.0007
+8  rounds= 13  aucpr= 0.0614  std= 0.0009
+9  rounds= 1  aucpr= 0.0416  std= 0.0007
+10  rounds= 1  aucpr= 0.0416  std= 0.0007
+11  rounds= 1  aucpr= 0.0416  std= 0.0007
+12  rounds= 1  aucpr= 0.0416  std= 0.0007
+13  rounds= 1  aucpr= 0.0416  std= 0.0007
+14  rounds= 1  aucpr= 0.0416  std= 0.0007
+15  rounds= 1  aucpr= 0.0416  std= 0.0007
+16  rounds= 12  aucpr= 0.0614  std= 0.0009
+17  rounds= 15  aucpr= 0.0585  std= 0.0031
+18  rounds= 1  aucpr= 0.0416  std= 0.0007
+19  rounds= 1  aucpr= 0.0416  std= 0.0007
+20  rounds= 1  aucpr= 0.0416  std= 0.0007
+21  rounds= 22  aucpr= 0.0979  std= 0.0045
+22  rounds= 136  aucpr= 0.128  std= 0.0069
+23  rounds= 1  aucpr= 0.0416  std= 0.0007
+24  rounds= 1  aucpr= 0.0416  std= 0.0007
+25  rounds= 1  aucpr= 0.0416  std= 0.0007
+26  rounds= 1  aucpr= 0.0416  std= 0.0007
+27  rounds= 1  aucpr= 0.0416  std= 0.0007
+28  rounds= 1  aucpr= 0.0416  std= 0.0007
+29  rounds= 1  aucpr= 0.0416  std= 0.0007
+30  rounds= 1  aucpr= 0.0416  std= 0.0007
+31  rounds= 1  aucpr= 0.0416  std= 0.0007
+32  rounds= 1  aucpr= 0.0416  std= 0.0007
+33  rounds= 1  aucpr= 0.0416  std= 0.0007
+34  rounds= 1  aucpr= 0.0416  std= 0.0007
+35  rounds= 1  aucpr= 0.0416  std= 0.0007
+36  rounds= 1  aucpr= 0.0416  std= 0.0007
+37  rounds= 21  aucpr= 0.101  std= 0.0054
+38  rounds= 23  aucpr= 0.0989  std= 0.0049
+39  rounds= 1  aucpr= 0.0416  std= 0.0007
+40  rounds= 1  aucpr= 0.0416  std= 0.0007
+41  rounds= 1  aucpr= 0.0416  std= 0.0007
+42  rounds= 1  aucpr= 0.0416  std= 0.0007
+43  rounds= 1  aucpr= 0.0416  std= 0.0007
+44  rounds= 1  aucpr= 0.0416  std= 0.0007
+45  rounds= 1  aucpr= 0.0416  std= 0.0007
+46  rounds= 1  aucpr= 0.0416  std= 0.0007
+47  rounds= 1  aucpr= 0.0416  std= 0.0007
+48  rounds= 1  aucpr= 0.0416  std= 0.0007
+49  rounds= 1  aucpr= 0.0416  std= 0.0007
+50  rounds= 1  aucpr= 0.0416  std= 0.0007
+51  rounds= 1  aucpr= 0.0416  std= 0.0007
+52  rounds= 1  aucpr= 0.0416  std= 0.0007
+53  rounds= 1  aucpr= 0.0416  std= 0.0007
+54  rounds= 1  aucpr= 0.0416  std= 0.0007
+55  rounds= 1  aucpr= 0.0416  std= 0.0007
+56  rounds= 1  aucpr= 0.0416  std= 0.0007
+57  rounds= 1  aucpr= 0.0416  std= 0.0007
+58  rounds= 1  aucpr= 0.0416  std= 0.0007
+59  rounds= 1  aucpr= 0.0416  std= 0.0007
+60  rounds= 18  aucpr= 0.0702  std= 0.0013
+61  rounds= 1  aucpr= 0.0416  std= 0.0007
+62  rounds= 1  aucpr= 0.0416  std= 0.0007
+63  rounds= 1  aucpr= 0.0416  std= 0.0007
+64  rounds= 1  aucpr= 0.0416  std= 0.0007
+65  rounds= 1  aucpr= 0.0416  std= 0.0007
+66  rounds= 1  aucpr= 0.0416  std= 0.0007
+67  rounds= 1  aucpr= 0.0416  std= 0.0007
+68  rounds= 1  aucpr= 0.0416  std= 0.0007
+69  rounds= 1  aucpr= 0.0416  std= 0.0007
+70  rounds= 1  aucpr= 0.0416  std= 0.0007
+71  rounds= 1  aucpr= 0.0416  std= 0.0007
+72  rounds= 1  aucpr= 0.0416  std= 0.0007
+73  rounds= 19  aucpr= 0.0689  std= 0.003
+74  rounds= 1  aucpr= 0.0416  std= 0.0007
+75  rounds= 1  aucpr= 0.0416  std= 0.0007
+76  rounds= 1  aucpr= 0.0416  std= 0.0007
+77  rounds= 1  aucpr= 0.0416  std= 0.0007
+78  rounds= 1  aucpr= 0.0416  std= 0.0007
+79  rounds= 1  aucpr= 0.0416  std= 0.0007
+80  rounds= 1  aucpr= 0.0416  std= 0.0007
+81  rounds= 14  aucpr= 0.0614  std= 0.0009
+82  rounds= 1  aucpr= 0.0416  std= 0.0007
+83  rounds= 1  aucpr= 0.0416  std= 0.0007
+84  rounds= 1  aucpr= 0.0416  std= 0.0007
+85  rounds= 1  aucpr= 0.0416  std= 0.0007
+86  rounds= 1  aucpr= 0.0416  std= 0.0007
+87  rounds= 1  aucpr= 0.0416  std= 0.0007
+88  rounds= 1  aucpr= 0.0416  std= 0.0007
+89  rounds= 1  aucpr= 0.0416  std= 0.0007
+90  rounds= 18  aucpr= 0.0625  std= 0.0038
+91  rounds= 1  aucpr= 0.0416  std= 0.0007
+92  rounds= 1  aucpr= 0.0416  std= 0.0007
+93  rounds= 1  aucpr= 0.0416  std= 0.0007
+94  rounds= 1  aucpr= 0.0416  std= 0.0007
+95  rounds= 1  aucpr= 0.0416  std= 0.0007
+96  rounds= 1  aucpr= 0.0416  std= 0.0007
+97  rounds= 1  aucpr= 0.0416  std= 0.0007
+98  rounds= 1  aucpr= 0.0416  std= 0.0007
+99  rounds= 1  aucpr= 0.0416  std= 0.0007
+100  rounds= 1  aucpr= 0.0416  std= 0.0007
+101  rounds= 1  aucpr= 0.0416  std= 0.0007
+102  rounds= 1  aucpr= 0.0416  std= 0.0007
+103  rounds= 1  aucpr= 0.0416  std= 0.0007
+104  rounds= 1  aucpr= 0.0416  std= 0.0007
+105  rounds= 1  aucpr= 0.0416  std= 0.0007
+106  rounds= 1  aucpr= 0.0416  std= 0.0007
+107  rounds= 1  aucpr= 0.0416  std= 0.0007
+108  rounds= 1  aucpr= 0.0416  std= 0.0007
+109  rounds= 1  aucpr= 0.0416  std= 0.0007
+110  rounds= 1  aucpr= 0.0416  std= 0.0007
+111  rounds= 1  aucpr= 0.0416  std= 0.0007
+112  rounds= 1  aucpr= 0.0416  std= 0.0007
+113  rounds= 1  aucpr= 0.0416  std= 0.0007
+114  rounds= 19  aucpr= 0.0956  std= 0.0043
+115  rounds= 1  aucpr= 0.0416  std= 0.0007
+116  rounds= 1  aucpr= 0.0416  std= 0.0007
+117  rounds= 1  aucpr= 0.0416  std= 0.0007
+118  rounds= 1  aucpr= 0.0416  std= 0.0007
+119  rounds= 1  aucpr= 0.0416  std= 0.0007
+120  rounds= 1  aucpr= 0.0416  std= 0.0007
+121  rounds= 1  aucpr= 0.0416  std= 0.0007
+122  rounds= 1  aucpr= 0.0416  std= 0.0007
+123  rounds= 1  aucpr= 0.0416  std= 0.0007
+124  rounds= 1  aucpr= 0.0416  std= 0.0007
+125  rounds= 1  aucpr= 0.0416  std= 0.0007
+126  rounds= 1  aucpr= 0.0416  std= 0.0007
+127  rounds= 1  aucpr= 0.0416  std= 0.0007
+128  rounds= 1  aucpr= 0.0416  std= 0.0007
+129  rounds= 1  aucpr= 0.0416  std= 0.0007
+130  rounds= 1  aucpr= 0.0416  std= 0.0007
+131  rounds= 1  aucpr= 0.0416  std= 0.0007
+132  rounds= 16  aucpr= 0.059  std= 0.002
+133  rounds= 1  aucpr= 0.0416  std= 0.0007
+134  rounds= 1  aucpr= 0.0416  std= 0.0007
+135  rounds= 1  aucpr= 0.0416  std= 0.0007
+136  rounds= 1  aucpr= 0.0416  std= 0.0007
+137  rounds= 1  aucpr= 0.0416  std= 0.0007
+138  rounds= 1  aucpr= 0.0416  std= 0.0007
+139  rounds= 1  aucpr= 0.0416  std= 0.0007
+140  rounds= 1  aucpr= 0.0416  std= 0.0007
+141  rounds= 1  aucpr= 0.0416  std= 0.0007
+142  rounds= 1  aucpr= 0.0416  std= 0.0007
+143  rounds= 1  aucpr= 0.0416  std= 0.0007
+144  rounds= 1  aucpr= 0.0416  std= 0.0007
+145  rounds= 1  aucpr= 0.0416  std= 0.0007
+146  rounds= 1  aucpr= 0.0416  std= 0.0007
+147  rounds= 1  aucpr= 0.0416  std= 0.0007
+148  rounds= 1  aucpr= 0.0416  std= 0.0007
+149  rounds= 1  aucpr= 0.0416  std= 0.0007
+150  rounds= 1  aucpr= 0.0416  std= 0.0007
+151  rounds= 1  aucpr= 0.0416  std= 0.0007
+152  rounds= 1  aucpr= 0.0416  std= 0.0007
+153  rounds= 1  aucpr= 0.0416  std= 0.0007
+154  rounds= 1  aucpr= 0.0416  std= 0.0007
+155  rounds= 1  aucpr= 0.0416  std= 0.0007
+156  rounds= 1  aucpr= 0.0416  std= 0.0007
+157  rounds= 1  aucpr= 0.0416  std= 0.0007
+158  rounds= 1  aucpr= 0.0416  std= 0.0007
+159  rounds= 1  aucpr= 0.0416  std= 0.0007
+160  rounds= 1  aucpr= 0.0416  std= 0.0007
+161  rounds= 15  aucpr= 0.0589  std= 0.0024
+162  rounds= 1  aucpr= 0.0416  std= 0.0007
+163  rounds= 1  aucpr= 0.0416  std= 0.0007
+164  rounds= 1  aucpr= 0.0416  std= 0.0007
+165  rounds= 14  aucpr= 0.0802  std= 0.0068
+166  rounds= 1  aucpr= 0.0416  std= 0.0007
+167  rounds= 1  aucpr= 0.0416  std= 0.0007
+168  rounds= 18  aucpr= 0.0603  std= 0.0011
+169  rounds= 1  aucpr= 0.0416  std= 0.0007
+170  rounds= 1  aucpr= 0.0416  std= 0.0007
+171  rounds= 1  aucpr= 0.0416  std= 0.0007
+172  rounds= 1  aucpr= 0.0416  std= 0.0007
+173  rounds= 1  aucpr= 0.0416  std= 0.0007
+174  rounds= 1  aucpr= 0.0416  std= 0.0007
+175  rounds= 1  aucpr= 0.0416  std= 0.0007
+176  rounds= 1  aucpr= 0.0416  std= 0.0007
+177  rounds= 18  aucpr= 0.0747  std= 0.0055
+178  rounds= 1  aucpr= 0.0416  std= 0.0007
+179  rounds= 1  aucpr= 0.0416  std= 0.0007
+180  rounds= 1  aucpr= 0.0416  std= 0.0007
+181  rounds= 20  aucpr= 0.0936  std= 0.0036
+182  rounds= 1  aucpr= 0.0416  std= 0.0007
+183  rounds= 1  aucpr= 0.0416  std= 0.0007
+184  rounds= 1  aucpr= 0.0416  std= 0.0007
+185  rounds= 1  aucpr= 0.0416  std= 0.0007
+186  rounds= 1  aucpr= 0.0416  std= 0.0007
+187  rounds= 1  aucpr= 0.0416  std= 0.0007
+188  rounds= 1  aucpr= 0.0416  std= 0.0007
+189  rounds= 1  aucpr= 0.0416  std= 0.0007
+190  rounds= 1  aucpr= 0.0416  std= 0.0007
+191  rounds= 1  aucpr= 0.0416  std= 0.0007
+192  rounds= 1  aucpr= 0.0416  std= 0.0007
+193  rounds= 1  aucpr= 0.0416  std= 0.0007
+194  rounds= 1  aucpr= 0.0416  std= 0.0007
+195  rounds= 1  aucpr= 0.0416  std= 0.0007
+196  rounds= 1  aucpr= 0.0416  std= 0.0007
+197  rounds= 1  aucpr= 0.0416  std= 0.0007
+198  rounds= 1  aucpr= 0.0416  std= 0.0007
+199  rounds= 1  aucpr= 0.0416  std= 0.0007
+Mejor N:  136
+{'objective': 'binary:logistic', 'eval_metric': ['aucpr'], 'eta': 0.4688983050847457, 'gamma': 0.0, 'max_depth': 13, 'lambda': 11.864406779661017, 'alpha': 0, 'scale_pos_weight': 0.05}
+
+Modelo guardado en modelo_32_altas_aucpr.json
