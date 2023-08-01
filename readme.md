@@ -11,21 +11,24 @@ conda env create -f tt1-environment.yml
 
 ## Preparación de los datos
 
-Directorio: /preparación_dataset
+El código de esta sección no puede ser ejecutado porque se eliminaron los datos originales para no mantener datos de estudiantes en un repositorio público, pero se pueden consultar sus estados ejecutados.
 
-El código que preprocesa los datos y realiza la ingeniería de variables se encuentra en las notebooks de Jupyter 01_dataprep.ipynb y 02_feateng.ipynb.
-
-Estas notebooks no pueden ser ejecutadas porque se eliminaron los datos originales para no mantener datos de estudiantes en un repositorio público, pero se pueden consultar sus estados ejecutados.
+Dentro del directorio ``preparacion_dataset``:
+1. ``01_dataprep.ipynb``: limpieza y estrandarización.
+    * Resultados guardados en: ``datos/dataset_01.csv``
+    * ``datos/codigos_carreras.csv``: referencia para poder eliminar la columna con los nombres de las carreras.
+1. ``02_feateng.ipynb``: ingeniería de variables.
+1. ``03_grupos_dni.ipynb`` : una simple exploración sobre la distribución de los números de DNI por cuatrimestre.
 
 
 ## Análisis Exploratorio
 
-El código y sus resultados se encuentran dentro del directorio /analisis_exploratorio .  
+El código y sus resultados se encuentran dentro del directorio ``analisis_exploratorio`` .  
 
 
 ## Métodos
 
-Directorio /xgboost  
+Directorio ``/xgboost`` .  
 
 Comenzar en la notebook ``xgboost/00_inicio.ipynb``
 
