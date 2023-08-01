@@ -1,0 +1,309 @@
+\documentclass[a4paper,11pt,dvipsnames]{article}
+% \usepackage[draft]{pgf}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[style=numeric, sorting=none]{biblatex}
+\addbibresource{../references.bib}
+\usepackage[spanish, es-tabla]{babel}
+\usepackage{mathrsfs}
+\usepackage{amssymb,amsmath}
+\usepackage{enumerate}
+\usepackage{csquotes} % Removes a warning related to babel
+% \usepackage{enumitem}  % It's better than enumerate
+% \usepackage{multirow}
+\usepackage{caption}
+\captionsetup[table]{skip=0pt}
+
+% \usepackage{graphicx}
+% \usepackage{ifthen}
+% \usepackage{xcolor}
+% \usepackage{tabularx}
+\usepackage{hyperref}
+
+\usepackage[locale=FR, per-mode=fraction, separate-uncertainty=true]{siunitx}
+\usepackage{physics}
+
+% Exporting matplotlib figures to pgfplots
+% \usepackage{layouts}
+% Use this to get the width
+% \printinunitsof{in}\prntlen{\textwidth}
+% and adjust the matplotlib figure based on that:
+% fig.set_size_inches(w=4.7747, h=3.5)
+% %
+
+
+\usepackage{pgfplots}
+\usepackage{tikz}
+% \usepackage{tikz-3dplot}
+\usetikzlibrary{decorations.pathreplacing,shapes,patterns,calc}
+\usetikzlibrary{babel}
+
+
+\usepackage[a4paper,vmargin={15mm,20mm},hmargin={20mm,15mm}, includefoot, bottom=3.5cm]{geometry}
+\usepackage{fancybox}
+% \usepackage{lastpage}
+\usepackage{fancyhdr}
+\setlength{\headheight}{60pt}
+\pagestyle{fancy}
+\fancyhead{}
+% \rhead{2\textsuperscript{do} 31 - 2023}
+% \lhead{\input{logoFRA.tex}}
+\chead{\rmfamily\fontsize{9}{0}\selectfont 2023 Maestría en Explotación de Datos y Descubrimiento del Conocimiento (FCEN - Universidad de Buenos Aires)}
+% \rfoot{\thepage\ / \pageref{LastPage}}
+% \cfoot{}
+% \lfoot{\textit{hola}}
+% \renewcommand{\footrulewidth}{0.4pt}
+
+
+% \title{\vspace{-2cm}\Huge \textbf{hola}}
+\title{Taller de Tesis I\\
+Entrega 2: Análisis Exploratorio de Datos}
+
+\author{\large Edgardo Palazzo\\ \normalsize epalazzo@cbc.uba.ar}
+% \date{\includegraphics[width=10cm]{logo_AE_HD.png}}
+\date{31 de mayo de 2023}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section*{Resumen}
+
+Para el trabajo de especialización voy a analizar las bases de datos de estudiantes de la cátedra de física del Ciclo Básico Común de la Universidad de Buenos Aires, que contienen un historial del desempeño de cada estudiante en las materias de la cátedra, desde el año 2011 hasta el año 2019. El objetivo es estudiar la posibilidad de determinar si el nivel de deserción o el de rendimiento académico están influenciados por características de los cursos contenidas en los datos existentes, que en su mayoría son consideradas como variables exógenas respecto al estudiante.\par\medskip
+En este trabajo se presentan los datos y la creación de nuevas variables, y se muestran algunos análisis exploratorios que puedan servir como referencia para las decisiones futuras al momento de entrenar modelos o aplicar técnicas que expliquen los datos.
+
+\section{Presentación de los datos}
+
+Los datos fueron provistos en distintas tablas de MS Access con diferentes estructuras que ya se unificaron en un único archivo \texttt{csv}. Cada registro de la tabla de datos originalmente corresponde a la información de un estudiante en un curso. La tabla \ref{tab:tamanio} muestra la cantidad de registros, de estudiantes y de sedes, y podemos notar que el número de estudiantes es muy inferior a la cantidad total de observaciones porque un gran número de estudiantes cursa una materia más de una vez.\par\medskip
+
+\begin{table}[!hb]
+    % \small
+    \caption{Cantidad de registros, estudiantes y sedes en los datos originales.}
+    \begin{center}
+    \begin{tabular}{cl}
+    \hline
+    \textbf{Ítem} & \textbf{Cantidad}\\
+    \hline
+    observaciones & 233615\\
+    estudiantes & 120364\\
+    sedes & 21\\
+    \hline
+    \end{tabular}
+    \label{tab:tamanio}
+    \end{center}
+\end{table}
+
+En la tabla \ref{tab:originales} se describen brevemente las variables que integran esos datos. Aunque es sencillo comprender qué representa cada variable listada en dicha tabla, vale hacer las siguientes aclaraciones. Las notas de los exámenes de un estudiante pueden estar vacías (alguna o todas), y eso representa que el estudiante no rindió ese examen. Además, cuando el estudiante alcanza la condición que lo habilita a rendir un examen final, tiene tres oportunidades consecutivas para hacerlo, y las calificaciones de esas oportunidades se encuentran en las variables \texttt{Final}, \texttt{rem1} y \texttt{rem2}.\par\medskip
+
+\begin{table}[!h]
+    % \small
+    \caption{Variables originales. En la columna de valores se muestra el contenido que se debería encontrar en cada variable. (\texttt{nan}: \textit{not a number})}
+    \begin{center}
+    \begin{tabular}{cll}
+    \hline
+    \textbf{Variable} & \textbf{Descripción} & \textbf{Valores}\\
+    \hline
+    \texttt{anio} & El año en que este estudiante cursó. & 2011, 2012, \dots, 2019\\
+    \texttt{cuat} & El cuatrimestre en que este estudiante cursó. & 1 o 2\\
+    \texttt{dni} & Documento Nacional de Identidad. & Ejemplo: 42000251\\
+    \texttt{COMISION} & Código utilizado para los cursos. & Ejemplo: 45301\\
+    \texttt{HORARIO} & Código utilizado para los diferentes turnos. & Ejemplo: 658\\
+    \texttt{AULA} & Número de aula donde cursa este estudiante. & Ejemplos: 1, 13, 214\\
+    \texttt{SEDE} & Código de sede donde cursa este estudiante. & Ejemplos: 1, 4, 28\\
+    \texttt{MATERIA} & Código de la materia que cursa este estudiante. & 3 o 53\\
+    \texttt{pa1} & Nota del primer parcial. & Entre 0 y 10 o \texttt{nan}\\
+    \texttt{pa2} & Nota del segundo parcial. & Entre 0 y 10 o \texttt{nan}\\
+    \texttt{Final} & Nota del examen final. & Entre 0 y 10 o \texttt{nan}\\
+    \texttt{codCarrera} & Código que identifica la carrera. & Ejemplos: 9, 45\\
+    \texttt{facultad} & Nombre de la facultad correspondiente. & Ejemplo: MEDICINA\\
+    \texttt{rem1} & Nota del examen final en 2da oportunidad. & Entre 0 y 10 o \texttt{nan}\\
+    \texttt{rem2} & Nota del examen final en 3ra oportunidad. & Entre 0 y 10 o \texttt{nan}\\
+    \hline
+    \end{tabular}
+    \label{tab:originales}
+    \end{center}
+\end{table}
+
+
+\section{Limpieza y preparación de los datos}
+
+Los datos fueron generados por múltiples usuarios con diversidad de criterios y en múltiples locaciones, por lo cual era esperable encontrarse con muchos datos erróneos o indeterminados, además de diferentes nomenclaturas. El trabajo de estandarización y limpieza fue bastante más extenso que el resumen mostrado a continuación.\par\medskip
+
+Acciones relacionadas a nombres de facultades, carreras y códigos de carrera:
+\begin{itemize}
+    \item Estandarización de los nombres de Facultades. Los casos indefinidos se reemplazaron por \texttt{nan}.
+    \item Los nombres de las carreras contenían diferentes denominaciones para una misma carrera y caracteres extraños, que fueron estandarizados según la información que se encuentra en la página del Ciclo Básico Común \cite{cbc:carreras}.
+    \item En los registros con información faltante sobre facultad, carrera o código de carrera, se completó la información utilizando los códigos o nombres relacionados en otros registros completos.
+    \item Se eliminaron los registros con códigos de carreras inexistentes o sin código ni información sobre carrera o facultad. (Cerca de 80 observaciones)
+\end{itemize}
+
+Luego de esta estandarización, alrededor de un 12\% de las observaciones contienen un código de carrera (99 o 999) que no está asociado a ninguna carrera ni facultad, y no contienen información adicional como el nombre de la carrera o la facultad, en ninguno de los registros de esos estudiantes. Luego de un análisis exploratorio se decidirá si imputar o no esos valores y cómo hacerlo.\par\medskip
+
+En cuanto a las variables relacionadas con calificaciones, se encontraron 231 observaciones con valores no esperados, como por ejemplo 25 o 98. En los casos en que fue posible, se imputaron valores según la información de las otras notas. Al tratarse de muy pocos registros, cuando no había información concluyente simplemente se reemplazaron por valores posibles, sin dedicar demasiado tiempo a una imputación más inteligente. De ser necesaria una corrección a este método (luego de los análisis correspondientes), una posibilidad es reemplazar por las notas más probables o que respeten alguna distribución en el curso, sede o turno.\par\medskip
+
+Para finalizar se puede mencionar que se imputaron valores faltantes en COMISION y AULA en 120 observaciones, utilizando valores posibles según la sede y el horario de cada registro.\par\medskip
+
+\section{Ingeniería de variables}
+
+En la tabla \ref{tab:nuevas} se resume una descripción de las variables creadas en esta etapa del trabajo. A partir de ahora, cada observación tendrá la información sobre un estudiante en un curso y además información sobre el curso y los demás estudiantes del curso. El objetivo de la creación de estas variables es incluir factores exógenos que intuitivamente se relacionan con desempeño académico o deserción, como el número de estudiantes o la composición de los cursos según alguna característica, que están bajo el control de la universidad, y de esta forma poder analizar si las decisiones de la institución en estos aspectos tienen una influencia medible.\cite{Tinto:firstyear}
+
+\begin{table}[!hb]
+    % \small
+    \caption{Variables creadas.}
+    \begin{center}
+    \begin{tabular}{cl}
+    \hline
+    \textbf{Variable} & \textbf{Descripción}\\
+    \hline
+    \texttt{extranjero}  & 0 o 1. Es extranjero si dni >\, 90 millones.\\
+    \texttt{edad}        & Categoría estimada con dni.\\
+    \texttt{curso} & Identificación única de curso.\\
+    \texttt{turno} & A: muy temprano, B: media mañana, C: media tarde, D: noche.\\
+    \texttt{n\_alum} & Cantidad de estudiantes en el curso.\\
+    \texttt{p\_ext} & Porcentaje de extranjeros en el curso.\\
+    \texttt{recurso} & Cantidad de veces que se inscribió anteriormente.\\
+    \texttt{p\_recursa} & Porcentaje de recursantes en el curso.\\
+    \texttt{sala} & Identificación única de aula.\\
+    \texttt{condición} & Abandona1, Abandona2, Insuficiente, Examen, Promociona.\\
+    \texttt{abandona1\_p} & Porcentaje en condición Abandona1 en el curso.\\
+    \texttt{abandona2\_p} & Porcentaje en condición Abandona2 en el curso, sobre los que rindieron parcial 1.\\
+    \hline
+    \end{tabular}
+    \label{tab:nuevas}
+    \end{center}
+\end{table}
+
+La variable \texttt{edad} es una categoría estimada a partir del \texttt{dni} de la siguiente forma. Para cada cuatrimestre se construye un histograma de los valores de dni formado con 10 intervalos regulares, y se extraen los límites de dichos intervalos. Luego a cada observación se le asigna la categoría de edad según a qué intervalo pertenece su dni en ese cuatrimestre. Un estudiante que recurse puede tener diferentes categorías de edad en los distintos cuatrimestres.\par\medskip
+
+En el caso de los extranjeros no se puede determinar su categoría de edad. Para completar la variable edad en todas las observaciones, con los extranjeros se decidió imputarles un valor de dni extraídos aleatoriamente de el conjunto de dni sin extranjeros de cada cuatrimestre. Si en el futuro se observa que esta categoría puede ser relevante, será necesario hacer análisis por separado sin incluir extranjeros.\par\medskip
+
+Los códigos de \texttt{COMISION} se repiten en cada cuatrimestre y las numeraciones de \texttt{AULA} tienen repeticiones en diferentes sedes. Para posibilitar análisis más específicos respecto de estas variables se generaron identificadores únicos de \texttt{curso} y de \texttt{sala}, contemplando que la sala sí puede repetirse en distintos cuatrimestres para una misma sede.\par\medskip
+
+El código de \texttt{HORARIO} indica los días y horarios en que se cursa la materia. Según estos códigos se asignó la categoría \texttt{turno} a cada observación según el siguiente criterio: los cursos que comienzan al principio del día (7AM y 8AM), los que comienzan a media mañana (de 9AM a 11AM), los que comienzan a media tarde (de 1PM a 6PM) y los cursos de la noche (desde 7PM en adelante).\par\medskip
+
+La categoría \texttt{condición} se determina según las siguientes reglas:
+\begin{itemize}
+    \item Abandona1: no tiene notas en ningún examen, abandonó antes de rendir el primer parcial.
+    \item Abandona2: tiene nota en el primer parcial pero no tiene nota de segundo parcial.
+    \item Insuficiente: la suma de ambos parciales es menor a 8.
+    \item Examen: la suma de ambos parciales es mayor o igual a 8 y menor a 13. Son estudiantes que deben rendir un examen final para aprobar la materia.
+    \item Promociona: la suma de ambos parciales es mayor o igual a 13.
+\end{itemize}
+
+Para finalizar la modificación de los datos, la variable \texttt{dni} fue sustituida por una identificación única de estudiante diferente para anonimizar su posible aparición en códigos o resultados que se deseen distribuir, y las variables \texttt{COMISION}, \texttt{AULA} y \texttt{HORARIO} fueron eliminadas.\par\medskip
+
+Se ha considerado generar más variables, como por ejemplo la composición del curso según facultades o carreras, o descripciones sobre las distribuciones de notas. Pero la generación de variables como las mencionadas demandan tiempo para su generación y su verificación, y se decidió postergar la creación de más variables luego de obtener algunos resultados.
+
+
+
+\section{Análisis exploratorio}
+
+Finalizada la preparación de los datos y la creación de nuevas variables, se generó un reporte con un análisis exploratorio automatizado demasiado extenso para ser incluido en este informe pero que se puede consultar en el siguiente link: \href{http://users.df.uba.ar/edmundo/eda_reporte_02-preliminar.html}{http:\slash\slash users.df.uba.ar\slash edmundo\slash eda\_reporte\_02-preliminar.html}. Dicho informe es exhaustivo por demás y no toda la información que contiene es relevante, pero sirve como referencia del estado de los datos en este punto del trabajo.\par\medskip
+
+Es importante en este punto observar que durante el análisis exploratorio se detectaron cursos completos sin calificaciones ingresadas. Estos cursos aportan algún tipo de información pero no son válidos para un análisis de desempeño académico. El trabajo que a continuación se relacione con calificaciones se realiza sobre una porción de los datos que se considera válida, es decir, que todos los cursos tienen notas cargadas. Esta porción de los datos contiene 159120 observaciones válidas, con 1763 cursos. \par\medskip
+
+
+Como primer paso se realizó un estudio del balance de los datos en diferentes categorías, del cual se desprende que las 21 sedes se pueden caracterizar según el número de estudiantes como sedes grandes o pequeñas, siendo que el 86\% de las observaciones corresponden a solo 6 sedes más grandes. Esta es una nueva variable que se puede crear respecto de la sede donde cursa cada estudiante.\par\medskip
+
+Respecto a la cantidad de observaciones según otras categorías, a modo de ejemplo en la figura \ref{fig:nalum} se muestran proporciones similares entre estudiantes de cada materia en las distintas sedes grandes, con la excepción de la sede 10 donde hay déficit de estudiantes de la materia 3. En la misma figura se observa que las proporciones de extranjeros también son similares en estas sedes, con una diferencia notable en la sede 1.\par\medskip
+
+Por otro lado, en la figura \ref{fig:turnos} se pueden comparar las cantidades de inscriptos por turnos, donde hay una gran diferencia en el número de inscriptos al turno noche (D), y no se ven grandes diferencias entre sedes.\par\medskip
+
+Estas distribuciones de estudiantes según sede, materia, extranjero o turno deberán ser tenidas en cuenta al momento de interpretar resultados.
+
+\begin{figure}[!t]
+    \begin{center}
+        \input{../img/eda_02_sedes-nalum.pgf}
+    \end{center}
+    \caption{Cantidad de estudiantes que se inscribieron en las sedes más grandes en cada materia y la cantidad de extranjeros.}
+    \label{fig:nalum}
+\end{figure}
+
+
+\begin{figure}[!h]
+    \begin{center}
+        \input{../img/eda_02_sedes-turno.pgf}
+    \end{center}
+    \caption{Cantidad de estudiantes que se inscribieron en las sedes más grandes en cada turno.}
+    \label{fig:turnos}
+\end{figure}
+
+Para indagar sobre deserción, la variable objetivo es \texttt{Abandona1} o \texttt{Abandona2} o alguna combinación de ellas. En las figuras \ref{fig:box-cuat} y \ref{fig:box-curso} se muestran gráficos de caja de porcentajes de estudiantes que abandonan, para las sedes más grandes (las primeras 6) y algunas de las sedes pequeñas. Los porcentajes antes del primer parcial representan la cantidad de estudiantes que no rindieron el parcial 1 sobre el total de estudiantes, y los porcentajes después del parcial 1 representan la cantidad que rindió el segundo parcial sobre los que rindieron el primero. Es notable la mayor retención entre los estudiantes que rindieron el primer parcial, y como era de esperar, hay mayor variabilidad cuando se calculan por curso respecto al porcentaje global de cada sede en cada cuatrimestre.
+
+\begin{figure}[!t]
+    \begin{center}
+        \input{../img/eda_02_box-desercion.pgf}
+    \end{center}
+    \caption{Dispersión de los porcentajes de estudiantes que abandonan antes o después del parcial 1 en cada cuatrimestre, por sedes.}
+    \label{fig:box-cuat}
+\end{figure}
+
+\begin{figure}[!h]
+    \begin{center}
+        \input{../img/eda_02_box-desercion-cursos.pgf}
+    \end{center}
+    \caption{Dispersión de los porcentajes de estudiantes que abandonan antes o después del parcial 1 en cada curso, por sedes.}
+    \label{fig:box-curso}
+\end{figure}\clearpage
+
+
+Una forma de medir desempeño académico es mediante la condición que alcanza cada estudiante al finalizar el curso, siendo \texttt{condicion} la variable objetivo en ese caso. Como ejemplo, la figura \ref{fig:box-promo} contiene diagramas de caja de los porcentajes de estudiantes que alcanzan la condición de promoción (las notas más elevadas) en cada cuatrimestre, discriminado por sedes. Viendo que los resultados son dispares, una parte de los estudios futuros será dedicada a intentar explicar estas diferencias.
+
+\begin{figure}[!h]
+    \begin{center}
+        \input{../img/eda_02_box-promociones.pgf}
+    \end{center}
+    \caption{Dispersión de los porcentajes de estudiantes que promocionan cada cuatrimestre, por sedes.}
+    \label{fig:box-promo}
+\end{figure}
+
+Otro análisis posible sobre desempeño académico es a través de los promedios de calificaciones. La figura \ref{fig:hist-pa1} muestra histogramas de las calificaciones obtenidas por cada estudiante en el examen parcial 1, en cada sede. Se observan distribuciones similares entre las sedes grandes y entre las sedes pequeñas, pero los histogramas de las sedes pequeñas están desplazados hacia las notas más bajas respecto de las sedes grandes.\par\medskip
+
+En cambio, si se analizan los histogramas de los promedios de notas de ambos parciales, mostrados en la figura \ref{fig:hist-promedios}, no hay diferencias apreciables entre las sedes grandes y pequeñas.\par\medskip
+
+Hay muchos otros análisis posibles que se podrían hacer, como estudiar distribuciones dentro de una misma sede discriminadas por aula, por turno, por edades, o por materia. Pero primero se aplicarán las técnicas propuestas en la sección siguiente para descubrir variables importantes y luego se agregarán análisis para la comprensión de esos resultados particulares.\par\medskip
+
+A modo de último comentario sobre exploración, siempre es interesante incluir la variable género, en este caso el de los estudiantes. No se cuenta con esa información en forma directa, pero sí se tienen los nombres de los estudiantes, y sería posible extraer el género con diferentes probabilidades a partir de esa información. Este análisis queda pendiente para una posible segunda etapa del trabajo.
+
+\begin{figure}[!t]
+    \begin{center}
+        \input{../img/eda_02_hist-pa1.pgf}
+    \end{center}
+    \caption{Histogramas de notas del parcial 1 por sede.}
+    \label{fig:hist-pa1}
+\end{figure}
+
+\begin{figure}[!b]
+    \begin{center}
+        \input{../img/eda_02_hist-pa2.pgf}
+    \end{center}
+    \caption{Histogramas del promedio de notas de ambos parciales por sede.}
+    \label{fig:hist-promedios}
+\end{figure}\clearpage
+
+
+\section{Metodologías propuestas}
+
+Se trabajará con dos técnicas diferentes: entrenar modelos predictivos y aplicar técnicas de regresión que expliquen alguna variable.\par\medskip
+
+El primer enfoque consistirá en entrenar modelos predictivos utilizando la biblioteca XGBoost \cite{Chen:2016:XST:2939672.2939785}. Se buscará predecir alguna de las variables objetivo que se analizaron durante la exploración: si abandona en el 1er o 2do parcial o la condición final de cada estudiante. Eso referido a predicciones sobre estudiantes individuales, pero también se buscará incluir predicciones respecto a cursos, considerando como variables objetivo a los porcentajes de deserción.\par\medskip
+
+El objetivo último no es la predicción, sino medir cuanto se alejen las predicciones del azar, buscando indicios de que existen factores en estos datos que están influenciando esos resultados. Además estos modelos ayudarán a descubrir las variables o interacciones de variables más importantes.\par\medskip
+
+En un enfoque alternativo se utilizarán modelos de regresión lineal múltiple, cambiando las variables y haciendo transformaciones fundamentadas en los diagnósticos anteriores, para buscar en qué medida las variables explican el porcentaje de deserción o de aprobación en cada curso.
+
+
+\section{Conclusiones}
+
+Según los análisis realizados hasta el momento, se puede decir que se posee una cantidad adecuada de observaciones, ya sea de estudiantes individuales o de cursos, y con una variabilidad apreciable, para poder utilizar algoritmos predictivos o técnicas explicativas, si los datos se agrupan adecuadamente.\par\medskip
+
+
+
+\printbibliography
+
+% \section*{Apéndice}
+
+% Figura con dnis.
+
+
+\end{document}

@@ -1,0 +1,42 @@
+Cantidad de observaciones para entrenamiento:  74890
+Positivos/Total:  0.24
+Variables:  ['cuat' 'SEDE' 'MATERIA' 'pa1_prom' 'codCarrera' 'extranjero' 'edad'
+ 'prom_edad' 'turno' 'n_alum' 'p_ext' 'recurso' 'p_recursa' 'abandona1_p']
+
+===================
+Validación cruzada con aucpr
+
+0  rounds= 26  aucpr= 0.3431  std= 0.0013
+1  rounds= 29  aucpr= 0.357  std= 0.0032
+2  rounds= 13  aucpr= 0.3551  std= 0.0041
+3  rounds= 14  aucpr= 0.3493  std= 0.0017
+4  rounds= 11  aucpr= 0.351  std= 0.0011
+5  rounds= 22  aucpr= 0.3529  std= 0.0024
+6  rounds= 33  aucpr= 0.3535  std= 0.0019
+7  rounds= 32  aucpr= 0.3667  std= 0.0033
+8  rounds= 28  aucpr= 0.3622  std= 0.0023
+9  rounds= 19  aucpr= 0.3506  std= 0.0028
+10  rounds= 66  aucpr= 0.359  std= 0.0031
+11  rounds= 13  aucpr= 0.3541  std= 0.0017
+12  rounds= 9  aucpr= 0.353  std= 0.002
+13  rounds= 22  aucpr= 0.3521  std= 0.003
+14  rounds= 16  aucpr= 0.351  std= 0.0031
+15  rounds= 80  aucpr= 0.3618  std= 0.0028
+16  rounds= 11  aucpr= 0.3526  std= 0.0025
+17  rounds= 14  aucpr= 0.3523  std= 0.001
+18  rounds= 20  aucpr= 0.3526  std= 0.0025
+19  rounds= 69  aucpr= 0.3685  std= 0.0026
+20  rounds= 25  aucpr= 0.3591  std= 0.0022
+21  rounds= 11  aucpr= 0.3426  std= 0.0024
+22  rounds= 19  aucpr= 0.3551  std= 0.0015
+23  rounds= 19  aucpr= 0.355  std= 0.0018
+24  rounds= 9  aucpr= 0.355  std= 0.0043
+25  rounds= 112  aucpr= 0.3637  std= 0.0024
+26  rounds= 66  aucpr= 0.3625  std= 0.0029
+27  rounds= 19  aucpr= 0.3624  std= 0.0038
+28  rounds= 30  aucpr= 0.3656  std= 0.0022
+29  rounds= 47  aucpr= 0.3585  std= 0.0027
+Mejor N:  69
+{'objective': 'binary:logistic', 'eval_metric': ['aucpr'], 'eta': 0.1117948717948718, 'gamma': 1.0256410256410255, 'max_depth': 15, 'lambda': 10.256410256410255, 'alpha': 0, 'scale_pos_weight': 0.3}
+
+Modelo guardado en modelo_01_estudiante_aucpr.json

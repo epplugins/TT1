@@ -1,0 +1,56 @@
+Cantidad de observaciones para entrenamiento:  74890
+Positivos/Total:  0.24
+Variables:  ['cuat' 'SEDE' 'MATERIA' 'pa1_prom' 'codCarrera' 'facultad' 'extranjero'
+ 'edad' 'prom_edad' 'turno' 'n_alum' 'p_ext' 'recurso' 'p_recursa'
+ 'abandona1_p']
+
+===================
+Validación cruzada con aucpr
+
+0  rounds= 1  aucpr= 0.2388  std= 0.0009
+1  rounds= 1  aucpr= 0.2388  std= 0.0009
+2  rounds= 1  aucpr= 0.2388  std= 0.0009
+3  rounds= 1  aucpr= 0.2388  std= 0.0009
+4  rounds= 1  aucpr= 0.2388  std= 0.0009
+5  rounds= 1  aucpr= 0.2388  std= 0.0009
+6  rounds= 8  aucpr= 0.24  std= 0.0043
+7  rounds= 1  aucpr= 0.2388  std= 0.0009
+8  rounds= 9  aucpr= 0.2393  std= 0.0059
+9  rounds= 4  aucpr= 0.2391  std= 0.0049
+10  rounds= 1  aucpr= 0.2388  std= 0.0009
+11  rounds= 1  aucpr= 0.2388  std= 0.0009
+12  rounds= 1  aucpr= 0.2388  std= 0.0009
+13  rounds= 1  aucpr= 0.2388  std= 0.0009
+14  rounds= 1  aucpr= 0.2388  std= 0.0009
+15  rounds= 1  aucpr= 0.2388  std= 0.0009
+16  rounds= 1  aucpr= 0.2388  std= 0.0009
+17  rounds= 1  aucpr= 0.2388  std= 0.0009
+18  rounds= 5  aucpr= 0.2389  std= 0.0053
+19  rounds= 1  aucpr= 0.2388  std= 0.0009
+20  rounds= 1  aucpr= 0.2388  std= 0.0009
+21  rounds= 1  aucpr= 0.2388  std= 0.0009
+22  rounds= 1  aucpr= 0.2388  std= 0.0009
+23  rounds= 1  aucpr= 0.2388  std= 0.0009
+24  rounds= 1  aucpr= 0.2388  std= 0.0009
+25  rounds= 36  aucpr= 0.2404  std= 0.0035
+26  rounds= 1  aucpr= 0.2388  std= 0.0009
+27  rounds= 1  aucpr= 0.2388  std= 0.0009
+28  rounds= 1  aucpr= 0.2388  std= 0.0009
+29  rounds= 1  aucpr= 0.2388  std= 0.0009
+30  rounds= 4  aucpr= 0.2392  std= 0.0009
+31  rounds= 1  aucpr= 0.2388  std= 0.0009
+32  rounds= 1  aucpr= 0.2388  std= 0.0009
+33  rounds= 1  aucpr= 0.2388  std= 0.0009
+34  rounds= 1  aucpr= 0.2388  std= 0.0009
+35  rounds= 1  aucpr= 0.2388  std= 0.0009
+36  rounds= 9  aucpr= 0.2391  std= 0.0014
+37  rounds= 1  aucpr= 0.2388  std= 0.0009
+38  rounds= 1  aucpr= 0.2388  std= 0.0009
+39  rounds= 1  aucpr= 0.2388  std= 0.0009
+Mejor N:  36
+{'objective': 'binary:logistic', 'eval_metric': ['aucpr'], 'eta': 0.4169230769230769, 'gamma': 1.0256410256410255, 'max_depth': 15, 'lambda': 0.0, 'alpha': 0, 'scale_pos_weight': 0.3}
+Cantidad de observaciones para test:  32097
+Positivos/Total:  0.24
+
+Clasificador aleatorio.
+Average precision score = 0.238
